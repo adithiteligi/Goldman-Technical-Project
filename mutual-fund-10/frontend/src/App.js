@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import Dropdown from './Components/Dropdown';
 
-function App() {
+const App = () => {
+  const [selectedFund, setSelectedFund] = useState('');
+
+  const handleFundSelect = (fundTicker) => {
+    setSelectedFund(fundTicker);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <h1>Mutual Fund Investment Predictor</h1>
+        <Dropdown onSelect={handleFundSelect} />
+        {selectedFund && <p>You selected: {selectedFund}</p>}
+      </div>
   );
-}
+};
 
 export default App;

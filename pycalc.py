@@ -13,6 +13,7 @@ def risk_free_rate_pull():
     api_key = '271951fe18d7cf4c3fda2384bf49aae3'
     url = f'https://api.stlouisfed.org/fred/series/observations?series_id=DGS10&api_key={api_key}&file_type=json'
     from_api = requests.get(url).json()
+    #get recent value
     risk_free_rate = (float(from_api['observations'][-1]['value']) / 100)
     return risk_free_rate
 
@@ -60,14 +61,26 @@ def calculate_investment_return(principal_amount, risk_free_rate, beta, market_r
     
     return principal_amount * math.exp(final_rate_return * num_years)
 
+def get_beta(ticker):
+    # api url for retrieving beta
+    url = f'https://api.newtonanalytics.com/stock-beta/?ticker={ticker}&index=^GSPC&interval=1mo&observations=12'
+    data = requests.get(url).json()
+    if 'beta' in data:
+        return data['beta']
+    else:
+        return None  #  beta is not found or the request fails
+
 #decide what logic to execute based on url of request(get)
 @app.route('/calculate', methods=['GET'])
 def calculate():
     try:
         # gets parameters from the request 
         principal_amount = float(request.args.get('principal_amount'))
-        beta = float(request.args.get('beta'))
+        ticker = request.args.get('ticker') #mf ticker from frontend dropdown?
         num_years = int(request.args.get('num_years'))
+        beta = get_beta(ticker)
+        if beta is None:
+            return jsonify({'error': 'Beta not found'}), 404
 
         # gets risk-free rate and market return
         risk_free_rate = risk_free_rate_pull()
@@ -94,3 +107,4 @@ if __name__ == '__main__':
 #run the app
 
 #for the test code the parameters are passed as a dictionary 
+#test link http://127.0.0.1:5000/calculate?principal_amount=10000&ticker=VFIAX&num_years=10

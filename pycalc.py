@@ -65,9 +65,8 @@ def get_beta(ticker):
     # api url for retrieving beta
     url = f'https://api.newtonanalytics.com/stock-beta/?ticker={ticker}&index=^5eGSPC&interval=1mo&observations=12'
     data = requests.get(url).json()
-    print(data)
-    if 'beta' in data:
-        return data['beta']
+    if 'data' in data:
+        return data['data'] #beta is in data key!!! solition to past errors pulling beta
     else:
         return None  #  beta is not found or the request fails
 

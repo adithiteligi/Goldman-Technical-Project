@@ -57,14 +57,20 @@ def calculate_final_rate_return(risk_free_rate, beta, market_return):
 #Final Equation as seen on NovoED
 def calculate_investment_return(principal_amount, risk_free_rate, beta, market_return, num_years):
    
+    print(f"principal_amount: {principal_amount}, type: {type(principal_amount)}")
+    print(f"beta: {beta}, type: {type(beta)}")
+    print(f"num_years: {num_years}, type: {type(num_years)}")
+
     final_rate_return = calculate_final_rate_return(risk_free_rate, beta, market_return)
-    
+    print(f"final_rate_return: {final_rate_return}, type: {type(final_rate_return)}")
+
     return principal_amount * math.exp(final_rate_return * num_years)
 
 def get_beta(ticker):
     # api url for retrieving beta
-    url = f'https://api.newtonanalytics.com/stock-beta/?ticker={ticker}&index=^5eGSPC&interval=1mo&observations=12'
+    url = f'https://api.newtonanalytics.com/stock-beta/?ticker={ticker}&index=^GSPC&interval=1mo&observations=12'
     data = requests.get(url).json()
+    print(data)
     if 'data' in data:
         return data['data'] #beta is in data key!!! solition to past errors pulling beta
     else:

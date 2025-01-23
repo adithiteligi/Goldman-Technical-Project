@@ -3,18 +3,6 @@
 #use dictionary to incoporate data of Fund Name, current price, Ticker Symbol, 1 year return, 5 year return 
 #not fleshed out 
 
-'''
-Vanguard_mutual =  {
-    'Vanguard Total Stock Market Index Fund': {
-        'ticker': 'VSMPX',
-        'current price' : 270.52 ,
-        '1_year_return': 0.2792,  #in decimal form from percent
-        '5_year_return': 0.894 #in decimal form from percent
-    }
-}
-'''
-# Just leaving ^ here in case
-
 MUTUAL_FUNDS = {
     'VSMPX': {
         'name': 'Vanguard Total Stock Market Index Fund; Institutional Plus',
@@ -167,3 +155,17 @@ MUTUAL_FUNDS = {
         '5_year_return': 0.020
     }
 }
+
+
+
+'''
+Vanguard_mutual =  {
+    'Vanguard Total Stock Market Index Fund': {
+        'ticker': 'VSMPX',
+        'current price' : 270.52 ,
+        '1_year_return': 0.2792,  #in decimal form from percent
+        '5_year_return': 0.894 #in decimal form from percent
+    }
+}
+'''
+# Just leaving ^ here in case

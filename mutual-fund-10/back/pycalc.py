@@ -1,11 +1,34 @@
 
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
 import math
+from hardcodemf import Vanguard_mutual
+
+# Enable CORS for all routes
+
+
 #import flask
+
 
 #create instance
 app = Flask(__name__)
+CORS(app)
+
+Vanguard_mutual = {
+    'Vanguard Total Stock Market Index Fund': {
+        'ticker': 'VSMPX',
+        'current_price': 270.52,
+        '1_year_return': 0.2792,  # In decimal form (27.92%)
+        '5_year_return': 0.894,   # In decimal form (89.4%)
+    }
+}
+
+# Route to get mutual funds data
+@app.route('/mutual-funds', methods=['GET'])
+def get_mutual_funds():
+    return jsonify(Vanguard_mutual)  # Return the mutual fund data as JSON
+
 
 #risk free rate 
 def risk_free_rate_pull():

@@ -1,0 +1,49 @@
+from flask import Flask, request, jsonify
+import requests
+import math
+
+app = Flask(__name__)
+
+RISK_FREE_RATE = 0.01  # Example risk-free rate
+
+@app.route('/mutual-funds', methods=['GET'])
+def get_mutual_funds():
+    mutual_funds = [
+        {"ticker": "VFIAX", "name": "Vanguard 500 Index Fund"},
+        {"ticker": "FXAIX", "name": "Fidelity 500 Index Fund"}
+    ]
+    return jsonify(mutual_funds)
+
+@app.route('/future-value', methods=['GET'])
+def get_future_value():
+    ticker = request.args.get('ticker')
+    initial_amount = float(request.args.get('initial_amount'))
+    duration = int(request.args.get('duration'))
+
+    beta = get_beta(ticker)
+    market_return_rate = get_market_return_rate()
+    rate = RISK_FREE_RATE + beta * (market_return_rate - RISK_FREE_RATE)
+    future_value = calculate_future_value(initial_amount, rate, duration)
+
+    return jsonify({"future_value": future_value})
+
+def get_beta(ticker):
+    url = f"https://api.newtonanalytics.com/stock-beta/?ticker={ticker}&index=^GSPC&interval=1mo&observations=12"
+    response = requests.get(url)
+    data = response.json()
+    return data['beta']
+
+def get_market_return_rate():
+    url = "https://api.stlouisfed.org/fred/series/observations?series_id=SP500&api_key=d26079fc190512773ac705629a92f8ea&file_type=json"
+    response = requests.get(url)
+    data = response.json()
+    observations = data['observations']
+    first_value = float(observations[0]['value'])
+    last_value = float(observations[-1]['value'])
+    return (last_value - first_value) / first_value
+
+def calculate_future_value(initial_amount, rate, duration):
+    return initial_amount * math.exp(rate * duration)
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -6,13 +6,38 @@ app = Flask(__name__)
 
 RISK_FREE_RATE = 0.01  # Example risk-free rate
 
+# Hardcoded list of mutual funds
+MUTUAL_FUNDS = [
+    {"ticker": "VSMPX", "name": "Vanguard Total Stock Market Index Fund; Institutional Plus"},
+    {"ticker": "FXAIX", "name": "Fidelity 500 Index Fund"},
+    {"ticker": "VFIAX", "name": "Vanguard 500 Index Fund; Admiral"},
+    {"ticker": "VTSAX", "name": "Vanguard Total Stock Market Index Fund; Admiral"},
+    {"ticker": "SPAXX", "name": "Fidelity Government Money Market Fund"},
+    {"ticker": "VMFXX", "name": "Vanguard Federal Money Market Fund; Investor"},
+    {"ticker": "FDRXX", "name": "Fidelity Government Cash Reserves"},
+    {"ticker": "FGTXX", "name": "Goldman Sachs FS Government Fund; Institutional"},
+    {"ticker": "SWVXX", "name": "Schwab Value Advantage Money Fund; Investor"},
+    {"ticker": "VGTSX", "name": "Vanguard Total International Stock Index Fund; Investor"},
+    {"ticker": "VFFSX", "name": "Vanguard 500 Index Fund; Institutional Select"},
+    {"ticker": "VIIIX", "name": "Vanguard Institutional Index Fund; Inst Plus"},
+    {"ticker": "OGVXX", "name": "JPMorgan US Government Money Market Fund; Capital"},
+    {"ticker": "MVRXX", "name": "Morgan Stanley Inst Liq Government Port; Institutional"},
+    {"ticker": "VTBNX", "name": "Vanguard Total Bond Market II Index Fund; Institutional"},
+    {"ticker": "TFDXX", "name": "BlackRock Liquidity FedFund; Institutional"},
+    {"ticker": "FRGXX", "name": "Fidelity Instl Government Portfolio; Institutional"},
+    {"ticker": "TTTXX", "name": "BlackRock Liquidity Treasury Trust Fund; Institutional"},
+    {"ticker": "AGTHX", "name": "American Funds Growth Fund of America; A"},
+    {"ticker": "VTBIX", "name": "Vanguard Total Bond Market II Index Fund; Investor"},
+    {"ticker": "GVMXX", "name": "State Street US Government Money Market Fund; Prem"},
+    {"ticker": "FCTDX", "name": "Fidelity Strategic Advisers Fidelity US Total Stk"},
+    {"ticker": "FCNTX", "name": "Fidelity Contrafund"},
+    {"ticker": "VINIX", "name": "Vanguard Institutional Index Fund; Institutional"},
+    {"ticker": "VMRXX", "name": "Vanguard Cash Reserves Federal Money Market Fd; Adm"},
+]
+
 @app.route('/mutual-funds', methods=['GET'])
 def get_mutual_funds():
-    mutual_funds = [
-        {"ticker": "VFIAX", "name": "Vanguard 500 Index Fund"},
-        {"ticker": "FXAIX", "name": "Fidelity 500 Index Fund"}
-    ]
-    return jsonify(mutual_funds)
+    return jsonify(MUTUAL_FUNDS)
 
 @app.route('/future-value', methods=['GET'])
 def get_future_value():

@@ -4,8 +4,6 @@ import math
 
 app = Flask(__name__)
 
-RISK_FREE_RATE = 0.01  # example risk-free rate
-
 # hardcoded list of mutual funds
 MUTUAL_FUNDS = [
     {"ticker": "VSMPX", "name": "Vanguard Total Stock Market Index Fund; Institutional Plus"},

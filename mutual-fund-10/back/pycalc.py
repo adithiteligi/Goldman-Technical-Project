@@ -2,10 +2,15 @@
 from flask import Flask, request, jsonify
 import requests
 import math
+from flask_cors import CORS
+
+
 #import flask
 
 #create instance
 app = Flask(__name__)
+
+CORS(app)
 
 #risk free rate 
 def risk_free_rate_pull():
@@ -14,7 +19,7 @@ def risk_free_rate_pull():
     url = f'https://api.stlouisfed.org/fred/series/observations?series_id=DGS10&api_key={api_key}&file_type=json'
     from_api = requests.get(url).json()
     #get recent value
-    risk_free_rate = (float(from_api['observations'][-1]['value']) / 100)
+    risk_free_rate = (float(from_api['observations'][-1]['value']) / 100) # access the last element of that list
     return risk_free_rate
 
 #S&P Market Average 

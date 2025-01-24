@@ -11,7 +11,7 @@ function requestcalculatereturn() { //function requesting on flask server
     .then(response => {
         // Only check for investment_return and display it
         if (response.data.investment_return) {
-            document.getElementById("result").innerText = `Investment Return: ${response.data.investment_return}`;
+            document.getElementById("Investment Result Placement").innerText = `Investment Return: ${response.data.investment_return}`;
         }
     });
 

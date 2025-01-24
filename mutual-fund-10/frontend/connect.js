@@ -9,7 +9,7 @@ function requestcalculatereturn() { //function requesting on flask server
     
     axios.get(url)
     .then(response => {
-        // Only check for investment_return and display it
+        // Only parses json 
         if (response.data['Investment Return']) {
             document.getElementById("Investment Result Placement").innerText = `
         Principal Amount: ${response.data['Principal Amount']}

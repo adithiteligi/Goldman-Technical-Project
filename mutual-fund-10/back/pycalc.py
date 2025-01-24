@@ -61,14 +61,8 @@ def calculate_final_rate_return(risk_free_rate, beta, market_return):
 
 #Final Equation as seen on NovoED
 def calculate_investment_return(principal_amount, risk_free_rate, beta, market_return, num_years):
-   
-    print(f"principal_amount: {principal_amount}, type: {type(principal_amount)}")
-    print(f"beta: {beta}, type: {type(beta)}")
-    print(f"num_years: {num_years}, type: {type(num_years)}")
 
     final_rate_return = calculate_final_rate_return(risk_free_rate, beta, market_return)
-    print(f"final_rate_return: {final_rate_return}, type: {type(final_rate_return)}")
-
     return principal_amount * math.exp(final_rate_return * num_years)
 
 def get_beta(ticker):
@@ -98,10 +92,20 @@ def calculate():
         market_return = avg_market_return_pull()
 
         # finds the investment return using final NovoED eq
-        investment_return = calculate_investment_return(principal_amount, risk_free_rate, beta, market_return, num_years)
+        investment_return = calculate_investment_return(principal_amount, risk_free_rate, 
+                                                        beta, market_return, num_years)
+        earnings = investment_return - principal_amount
+
+        print(f"Principal Amount: {principal_amount}")
+        print(f"Time Horizon: {num_years}")
+        print(f"Return Rate: {market_return}")
+        print(f"Mutual Fund Beta: {beta}")
+        print(f"Risk Free Rate: {risk_free_rate}")
+        print(f"Earnings: {earnings}")
+        print(f"Investment Return: {investment_return}")
 
         # return as JSON for frontend management
-        return jsonify({'investment_return': investment_return})
+        return jsonify({ 'Principal Amount': principal_amount, 'Time Horizon': num_years, 'Return Rate': market_return,'Mutual Fund Beta': beta, 'Risk Free Rate': risk_free_rate, 'Earnings': earnings, 'Investment Return': investment_return})
 
     except Exception as e:
         # return error 

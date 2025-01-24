@@ -9,8 +9,8 @@ function requestcalculatereturn() { //function requesting on flask server
     
     axios.get(url)
     .then(response => {
-        // Only parses json 
-        if (response.data['Investment Return']) {
+        // Only parses json
+        if (response.data['Investment Return']) { // if the investment return key exits then send the data to dom via html 
             document.getElementById("Investment Result Placement").innerText = `
         Principal Amount: ${response.data['Principal Amount']}
         Time Horizon (Years): ${response.data['Time Horizon']}

@@ -79,7 +79,7 @@ def get_beta(ticker):
 @app.route('/calculate', methods=['GET'])
 def calculate():
     try:
-        # gets parameters from the request 
+        # gets parameters from the query (const url) 
         principal_amount = float(request.args.get('principal_amount'))
         ticker = request.args.get('ticker') #mf ticker from frontend dropdown?
         num_years = int(request.args.get('num_years'))

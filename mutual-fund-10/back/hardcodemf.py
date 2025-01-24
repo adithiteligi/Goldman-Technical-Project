@@ -1,7 +1,7 @@
 #need to manually extract data from Market Watch 
 #choose VSMPX (Vanguard Total Stock Market Index Fund; Institutional Plus)
 #use dictionary to incoporate data of Fund Name, current price, Ticker Symbol, 1 year return, 5 year return 
-#not fleshed out 
+#not fleshed out, just examples - not needed
 
 Vanguard_mutual =  {
     'Vanguard Total Stock Market Index Fund': {

@@ -24,4 +24,4 @@ Tech Stack
 * APIs: FRED (S&P 500 returns), Newton Analytics (Beta values)
 
 Demo
-https://github.com/user-attachments/assets/c675753b-4bcb-4a0c-8468-e50743d1a1d5
+[![Demo Video](https://img.youtube.com/vi/kaJ_JY4zRtc/0.jpg)]([https://youtu.be/kaJ_JY4zRtc]))

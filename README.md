@@ -18,5 +18,10 @@ Data Sources
   
 Tech Stack
 * Frontend: React
+
+
 * Backend: Python, Axios
 * APIs: FRED (S&P 500 returns), Newton Analytics (Beta values)
+
+Demo
+https://github.com/user-attachments/assets/c675753b-4bcb-4a0c-8468-e50743d1a1d5
